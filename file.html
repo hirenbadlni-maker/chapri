@@ -1,0 +1,137 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday bhai!</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial, sans-serif;
+    text-align:center;
+    color:white;
+}
+
+.container{
+    text-align:center;
+    margin-top:120px;
+    position:relative;
+    z-index:10;
+}
+
+h1{
+    font-size:55px;
+    text-shadow:0 0 20px white;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px white; }
+    to{ text-shadow:0 0 30px yellow; }
+}
+
+h2{
+    font-size:28px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:white;
+    color:#ff4081;
+    margin-top:20px;
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    width:70px;
+    height:90px;
+    border-radius:50%;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-150px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎂 Happy Birthday MANOMAY BHAI! 🎂</h1>
+    <h2>Wishing you lots of happiness and success!</h2>
+
+    <button onclick="playWish()">
+        ▶ Play sweet wishes
+    </button>
+</div>
+
+<!-- Your voice recording -->
+<audio id="wish">
+    <source src="birthday.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playWish(){
+    document.getElementById("wish").play();
+    startConfetti();
+}
+
+// Balloons
+const colors=["red","blue","yellow","green","purple","orange","pink"];
+
+for(let i=0;i<25;i++){
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.style.background=
+        colors[Math.floor(Math.random()*colors.length)];
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=
+        (6+Math.random()*8)+"s";
+    document.body.appendChild(b);
+}
+
+// Confetti
+function startConfetti(){
+    for(let i=0;i<150;i++){
+        let c=document.createElement("div");
+
+        c.style.position="absolute";
+        c.style.width="10px";
+        c.style.height="10px";
+        c.style.background=
+            colors[Math.floor(Math.random()*colors.length)];
+
+        c.style.left=Math.random()*100+"vw";
+        c.style.top="-20px";
+        c.style.borderRadius="50%";
+
+        document.body.appendChild(c);
+
+        c.animate(
+        [
+            {transform:"translateY(0px) rotate(0deg)"},
+            {transform:"translateY(100vh) rotate(720deg)"}
+        ],
+        {
+            duration:3000+Math.random()*3000
+        });
+    }
+}
+</script>
+
+</body>
+</html>
